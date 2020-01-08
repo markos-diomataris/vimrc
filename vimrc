@@ -10,6 +10,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'tomasr/molokai'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-commentary'
+"Plugin 'vim-python/python-syntax'
+Plugin 'nvie/vim-flake8'
+"Plugin 'hdima/python-syntax'
+
+"Plugin 'townk/vim-autoclose'
+Plugin 'miyakogi/conoline.vim'
+
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+
 Plugin 'SimpylFold'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -26,6 +43,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'Valloric/YouCompleteMe'
+"Plugin 'valloric/youcompleteme'
 " Plugin for split terminal module
 "Bundle 'jewes/Conque-Shell'
 " All of your Plugins must be added before the following line
@@ -45,12 +63,47 @@ filetype plugin indent on    " required
 syntax on
 filetype on
 filetype indent plugin on
-let g:python_highlight_all = 1
+
+let g:ycm_python_interpreter_path = '/home/markos/anaconda3/envs/mypy3/bin/python'
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/.global_extra_conf.py'
+"let g:ycm_python_binary_path = 'python3'
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+
 set number
 :imap ii <Esc>
-nnoremap <C-t> :vertical terminal
+nnoremap <C-t> :terminal
+set splitbelow
+set splitright
+
+"easy window switching
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+"nerdtree map
+nmap <C-n> :NERDTreeToggle<CR>
+
+colorscheme jellybeans
+let g:jellybeans_overrides = {
+\    'MatchParen': { 'guifg': 'dd0093', 'guibg': '000000',
+\                    'ctermfg': 'Magenta', 'ctermbg': '' },
+\}
+
+"python-syntax | hdima
+let python_highlight_all = 1
+"source ~/.vim/syntax/python.vim
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+set rnu
+
+let g:conoline_auto_enable = 1
 
